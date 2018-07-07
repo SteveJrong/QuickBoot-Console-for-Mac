@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using QuickBootConsoleForMac.commons;
 using QuickBootConsoleForMac.service;
 
@@ -11,10 +12,17 @@ namespace QuickBootConsoleForMac
         {
             Dictionary<int, string> allToolModels = ToolModelFactory.getToolModelCollections();
 
-            Console.WriteLine(Constants.WELCOME_SLOGAN);
+            Console.WriteLine(Constants.WELCOME_SLOGAN + "\n" + Constants.WELCOME_DESCRIPTION);
+            StringBuilder strBuilder = new StringBuilder();
+            foreach (var item in allToolModels)
+            {
+                strBuilder.AppendLine(item.Key + "." + item.Value);
+            }
+            Console.WriteLine(strBuilder);
+
             while (true) {
                 string consoleInput = Console.ReadLine();
-                if (!String.IsNullOrEmpty(consoleInput))
+                if (!String.IsNullOrEmpty(consoleInput) && !"0".Equals(consoleInput))
                 {
                     int consoleInputNum = Int32.Parse(consoleInput);
                     Type t = Type.GetType("QuickBootConsoleForMac.service.impl." + allToolModels[consoleInputNum]);
