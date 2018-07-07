@@ -12,6 +12,7 @@ namespace QuickBootConsoleForMac
         {
             Dictionary<int, string> allToolModels = ToolModelFactory.getToolModelCollections();
 
+            #region 设置欢迎标语和使用方法
             Console.WriteLine(Constants.WELCOME_SLOGAN + "\n" + Constants.WELCOME_DESCRIPTION);
             StringBuilder strBuilder = new StringBuilder();
             foreach (var item in allToolModels)
@@ -19,6 +20,7 @@ namespace QuickBootConsoleForMac
                 strBuilder.AppendLine(item.Key + "." + item.Value);
             }
             Console.WriteLine(strBuilder);
+            #endregion
 
             while (true) {
                 string consoleInput = Console.ReadLine();
